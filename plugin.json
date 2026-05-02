@@ -12,12 +12,14 @@
     {
       "field": "params.llms_recent_count",
       "label": "Number of posts in 'Recent Posts' section of /llms.txt (default 20)",
-      "type": "text"
+      "type": "text",
+      "placeholder": "20"
     },
     {
       "field": "params.llms_full_count",
       "label": "Number of posts to inline in /llms-full.txt (default 100, set 0 to disable)",
-      "type": "text"
+      "type": "text",
+      "placeholder": "100"
     },
     {
       "field": "params.llms_include_pages",
