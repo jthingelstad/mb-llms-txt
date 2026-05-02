@@ -1,6 +1,6 @@
 # llms.txt — a plug-in for Micro.blog
 
-<img src="https://raw.githubusercontent.com/jthingelstad/mb-llms-txt/main/image.png" width="200" height="200" alt="llms.txt for Micro.blog">
+<img src="https://raw.githubusercontent.com/jthingelstad/mb-llms-txt/main/icon.png" width="200" height="200" alt="llms.txt for Micro.blog">
 
 Adds support for the [llmstxt.org](https://llmstxt.org/) standard to any Micro.blog hosted blog. Once installed, the plug-in publishes:
 
