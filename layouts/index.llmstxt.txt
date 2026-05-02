@@ -1,0 +1,30 @@
+# {{ .Site.Title }}
+
+> {{ with .Site.Params.llms_intro }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Params.subtitle | default .Site.Title }}{{ end }}
+
+{{ if .Site.Params.llms_include_pages -}}
+## Pages
+{{ range where .Site.RegularPages "Type" "page" -}}
+- [{{ .Title | default "Page" }}]({{ .Permalink }}index.md)
+{{ end }}
+{{ end -}}
+
+## Recent Posts
+{{ $count := (.Site.Params.llms_recent_count | default 20) | int -}}
+{{ range first $count (where .Site.RegularPages "Type" "post") -}}
+{{ $label := .Title -}}
+{{ if not $label }}{{ $label = (.Plain | plainify | htmlUnescape | truncate 60) }}{{ end -}}
+- [{{ $label }}]({{ .Permalink }}index.md): {{ .Date.Format "2006-01-02" }}{{ with .Summary }} — {{ . | plainify | htmlUnescape | truncate 140 }}{{ end }}
+{{ end }}
+
+{{ if .Site.Params.llms_include_archive -}}
+## Archive
+{{ range (where .Site.RegularPages "Type" "post").GroupByDate "2006" }}
+### {{ .Key }}
+{{ range .Pages -}}
+{{ $label := .Title -}}
+{{ if not $label }}{{ $label = (.Plain | plainify | htmlUnescape | truncate 60) }}{{ end -}}
+- [{{ $label }}]({{ .Permalink }}index.md): {{ .Date.Format "2006-01-02" }}
+{{ end }}
+{{- end }}
+{{- end }}

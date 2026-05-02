@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "title": "llms.txt",
+  "description": "Adds /llms.txt, /llms-full.txt, and per-post Markdown alternates so LLMs and AI agents can read your blog cleanly. Implements the llmstxt.org spec.",
+  "includes": ["llms_md_link.html"],
+  "fields": [
+    {
+      "field": "params.llms_intro",
+      "label": "Intro blockquote (Markdown, optional — defaults to site description)",
+      "type": "markdown"
+    },
+    {
+      "field": "params.llms_recent_count",
+      "label": "Number of posts in 'Recent Posts' section of /llms.txt (default 20)",
+      "type": "text"
+    },
+    {
+      "field": "params.llms_full_count",
+      "label": "Number of posts to inline in /llms-full.txt (default 100, set 0 to disable)",
+      "type": "text"
+    },
+    {
+      "field": "params.llms_include_pages",
+      "label": "Include static pages in /llms.txt index",
+      "type": "boolean"
+    },
+    {
+      "field": "params.llms_include_archive",
+      "label": "Include full year-by-year archive in /llms.txt (turn off on very large blogs)",
+      "type": "boolean"
+    }
+  ]
+}

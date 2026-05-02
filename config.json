@@ -1,0 +1,15 @@
+{
+  "mediaTypes": {
+    "text/llmstxt": { "suffixes": ["txt"] },
+    "text/markdown": { "suffixes": ["md"] }
+  },
+  "outputFormats": {
+    "llmstxt":  { "name": "llmstxt",  "mediaType": "text/llmstxt",  "baseName": "llms",      "isPlainText": true, "path": "" },
+    "llmsfull": { "name": "llmsfull", "mediaType": "text/llmstxt",  "baseName": "llms-full", "isPlainText": true, "path": "" },
+    "markdown": { "name": "markdown", "mediaType": "text/markdown", "baseName": "index",     "isPlainText": true }
+  },
+  "outputs": {
+    "home": ["HTML", "RSS", "JSON", "llmstxt", "llmsfull"],
+    "page": ["HTML", "markdown"]
+  }
+}

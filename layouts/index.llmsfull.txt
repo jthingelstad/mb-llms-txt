@@ -1,0 +1,16 @@
+# {{ .Site.Title }}
+
+> {{ with .Site.Params.llms_intro }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Params.subtitle | default .Site.Title }}{{ end }}
+
+{{ $count := (.Site.Params.llms_full_count | default 100) | int -}}
+{{ if gt $count 0 -}}
+{{ range first $count (where .Site.RegularPages "Type" "post") }}
+---
+
+# {{ .Title | default (.Date.Format "2006-01-02") }}
+
+*{{ .Date.Format "2006-01-02" }}* — {{ .Permalink }}
+
+{{ .RawContent }}
+{{ end -}}
+{{ end -}}
