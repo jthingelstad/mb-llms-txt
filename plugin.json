@@ -1,8 +1,7 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "llms.txt",
-  "description": "Adds /llms.txt, /llms-full.txt, and per-post Markdown alternates so LLMs and AI agents can read your blog cleanly. Implements the llmstxt.org spec.",
-  "includes": ["llms_md_link.html"],
+  "description": "Adds /llms.txt and /llms-full.txt to your blog so LLMs and AI agents can read it cleanly. Implements the llmstxt.org spec.",
   "fields": [
     {
       "field": "params.llms_intro",

@@ -1,15 +1,12 @@
 {
   "mediaTypes": {
-    "text/llmstxt": { "suffixes": ["txt"] },
-    "text/markdown": { "suffixes": ["md"] }
+    "text/llmstxt": { "suffixes": ["txt"] }
   },
   "outputFormats": {
-    "llmstxt":  { "name": "llmstxt",  "mediaType": "text/llmstxt",  "baseName": "llms",      "isPlainText": true, "path": "" },
-    "llmsfull": { "name": "llmsfull", "mediaType": "text/llmstxt",  "baseName": "llms-full", "isPlainText": true, "path": "" },
-    "markdown": { "name": "markdown", "mediaType": "text/markdown", "baseName": "index",     "isPlainText": true }
+    "llmstxt":  { "name": "llmstxt",  "mediaType": "text/llmstxt", "baseName": "llms",      "isPlainText": true, "path": "" },
+    "llmsfull": { "name": "llmsfull", "mediaType": "text/llmstxt", "baseName": "llms-full", "isPlainText": true, "path": "" }
   },
   "outputs": {
-    "home": ["HTML", "RSS", "JSON", "llmstxt", "llmsfull"],
-    "page": ["HTML", "markdown"]
+    "home": ["HTML", "RSS", "JSON", "llmstxt", "llmsfull"]
   }
 }

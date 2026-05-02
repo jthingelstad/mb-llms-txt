@@ -6,7 +6,6 @@ Adds support for the [llmstxt.org](https://llmstxt.org/) standard to any Micro.b
 
 - **`/llms.txt`** — a structured Markdown index of your blog (title, description, recent posts, full year-by-year archive). This is what an LLM or AI agent fetches first to understand your site.
 - **`/llms-full.txt`** — the full Markdown body of your most recent posts inlined into a single file (capped, configurable). Useful for one-shot context loads.
-- **`/{post-permalink}/index.md`** — a clean Markdown alternate for every post and page. Each post's `<head>` includes a `<link rel="alternate" type="text/markdown">` so clients can auto-discover it.
 
 ## Installation
 
@@ -27,12 +26,12 @@ Adds support for the [llmstxt.org](https://llmstxt.org/) standard to any Micro.b
 
 Micro.blog blogs range from a few dozen posts to 20+ years and 18,000+ posts. The plug-in handles both:
 
-- Small blogs: leave everything on, get a complete `/llms.txt` and a meaningful `/llms-full.txt`.
-- Large blogs: turn off "Include full archive" and lower the `/llms-full.txt` post count. The per-post `.md` files still cover every post — an LLM agent that wants the long tail follows links from `/llms.txt` to individual `.md` files.
+- **Small blogs**: leave everything on, get a complete `/llms.txt` and a meaningful `/llms-full.txt`.
+- **Large blogs**: turn off "Include full archive" and lower the `/llms-full.txt` post count. `/llms.txt` still gives a discoverable index of recent posts.
 
-## Why no per-year files?
+## Per-post Markdown alternates — not in this version
 
-It would be nice to publish `/llms-2024.txt`, `/llms-2025.txt`, etc. so a reader could pull one year at a time. Hugo, however, can't natively generate one file per year at a predictable URL without per-post taxonomy front matter — and we can't retroactively tag thousands of existing posts on every blog this plug-in installs onto. The per-post `.md` alternates serve the same use case at finer granularity: an LLM that wants "everything from 2024" reads `/llms.txt`, filters the year section, and fetches each post's `.md`.
+The llmstxt.org spec also recommends serving a clean Markdown alternate for every page (e.g. a `.md` companion to every post). Adding a per-page output format from a Micro.blog plug-in requires platform support that doesn't currently exist; if/when Micro.blog merges plug-in `outputs.page` config additions, that feature will be added here.
 
 ## Requirements
 

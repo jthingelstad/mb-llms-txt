@@ -2,12 +2,10 @@
 
 > {{ with .Site.Params.llms_intro }}{{ . }}{{ else }}{{ .Site.Params.description | default .Site.Params.subtitle | default .Site.Title }}{{ end }}
 
-{{/* Helper: prefer the page's markdown output URL; fall back to its canonical permalink */}}
 {{ if .Site.Params.llms_include_pages -}}
 ## Pages
 {{ range where .Site.RegularPages "Type" "page" -}}
-{{ $url := .Permalink }}{{ with .OutputFormats.Get "markdown" }}{{ $url = .Permalink }}{{ end -}}
-- [{{ .Title | default "Page" }}]({{ $url }})
+- [{{ .Title | default "Page" }}]({{ .Permalink }})
 {{ end }}
 {{ end -}}
 
@@ -16,8 +14,7 @@
 {{ range first $count (where .Site.RegularPages "Type" "post") -}}
 {{ $label := .Title -}}
 {{ if not $label }}{{ $label = (.Plain | plainify | htmlUnescape | truncate 60) }}{{ end -}}
-{{ $url := .Permalink }}{{ with .OutputFormats.Get "markdown" }}{{ $url = .Permalink }}{{ end -}}
-- [{{ $label }}]({{ $url }}): {{ .Date.Format "2006-01-02" }}{{ with .Summary }} — {{ . | plainify | htmlUnescape | truncate 140 }}{{ end }}
+- [{{ $label }}]({{ .Permalink }}): {{ .Date.Format "2006-01-02" }}{{ with .Summary }} — {{ . | plainify | htmlUnescape | truncate 140 }}{{ end }}
 {{ end }}
 
 {{ if .Site.Params.llms_include_archive -}}
@@ -27,8 +24,7 @@
 {{ range .Pages -}}
 {{ $label := .Title -}}
 {{ if not $label }}{{ $label = (.Plain | plainify | htmlUnescape | truncate 60) }}{{ end -}}
-{{ $url := .Permalink }}{{ with .OutputFormats.Get "markdown" }}{{ $url = .Permalink }}{{ end -}}
-- [{{ $label }}]({{ $url }}): {{ .Date.Format "2006-01-02" }}
+- [{{ $label }}]({{ .Permalink }}): {{ .Date.Format "2006-01-02" }}
 {{ end }}
 {{- end }}
 {{- end }}
