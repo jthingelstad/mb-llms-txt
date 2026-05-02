@@ -1,5 +1,7 @@
 # llms.txt — a plug-in for Micro.blog
 
+<img src="https://raw.githubusercontent.com/jthingelstad/mb-llms-txt/main/image.png" width="200" height="200" alt="llms.txt for Micro.blog">
+
 Adds support for the [llmstxt.org](https://llmstxt.org/) standard to any Micro.blog hosted blog. Once installed, the plug-in publishes:
 
 - **`/llms.txt`** — a structured Markdown index of your blog (title, description, recent posts, full year-by-year archive). This is what an LLM or AI agent fetches first to understand your site.
