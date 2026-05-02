@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.0.1",
   "title": "llms.txt",
   "description": "Adds /llms.txt, /llms-full.txt, and per-post Markdown alternates so LLMs and AI agents can read your blog cleanly. Implements the llmstxt.org spec.",
   "includes": ["llms_md_link.html"],
