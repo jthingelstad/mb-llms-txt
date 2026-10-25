@@ -7,6 +7,11 @@
     "llmsfull": { "name": "llmsfull", "mediaType": "text/llmstxt", "baseName": "llms-full", "isPlainText": true, "path": "" }
   },
   "outputs": {
-    "home": ["HTML", "RSS", "JSON", "llmstxt", "llmsfull"]
+    "home": [
+      "HTML", "RSS", "JSON", "RSD",
+      "ArchiveHTML", "ArchiveJSON", "PhotosHTML", "PhotosJSON",
+      "PodcastXML", "PodcastJSON",
+      "llmstxt", "llmsfull"
+    ]
   }
 }
