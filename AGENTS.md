@@ -24,10 +24,12 @@ A Micro.blog "plug-in" is structurally a lightweight Hugo theme: a `plugin.json`
 
 ## Hard-won constraints — read before changing layouts
 
-Micro.blog's plug-in build pipeline has surprising behaviour. Two failure modes have been hit on live installs and are documented in `ROADMAP.md` and `NOTES_FOR_MICROBLOG.md`:
+Micro.blog's plug-in build pipeline has surprising behaviour. Three failure modes are known and are documented in `ROADMAP.md` and `NOTES_FOR_MICROBLOG.md`:
 
 1. **Plug-in `outputs.page` is not merged** into the site config. Adding `"page": ["HTML", "markdown"]` to `config.json` does not make per-page `.md` files appear; the addition is silently dropped.
 2. **Any `_default/single.*` template ships in the plug-in is dangerous.** Because the custom output format isn't actually registered (per #1), Hugo's lookup falls through and the `.md` template is applied to the *HTML* output of every post on the host blog — replacing the theme and rendering raw markdown in browsers. Confirmed on roadsignmath.xyz with v1.0.0 *and* v1.0.1 (the format-explicit `single.markdown.md` rename did not save us).
+
+3. **Plug-in `outputs.home` replaces Micro.blog's list; it is not added to it.** Hugo replaces arrays when it merges config, so a plug-in that lists only `HTML`, `RSS`, `JSON` and its own formats switches off the rest of Micro.blog's home outputs: `/rsd.xml`, `/archive/` and `/archive/index.json`, `/photos/` and `/photos/index.json`, `/podcast.xml` and `/podcast.json`. Versions up to 1.0.2 did this. `config.json` therefore restates all ten of Micro.blog's defaults (`HTML`, `RSS`, `JSON`, `RSD`, `ArchiveHTML`, `ArchiveJSON`, `PhotosHTML`, `PhotosJSON`, `PodcastXML`, `PodcastJSON`, as in `microdotblog/theme-blank`'s `config.json`), in that order, before `llmstxt` and `llmsfull`. Recheck theme-blank whenever Micro.blog adds a format. Evidence: the b10g plug-in's README ("Setting it replaces Micro.blog's rather than adding to it … `config.json` has to restate all ten"), and the thing-hugo theme on www.thingelstad.com, which ships the same restated list live.
 
 **Therefore**: do **not** add files under `layouts/_default/single.*` or `layouts/_default/list.*` until Micro.blog's pipeline supports plug-in `outputs.page` merge. Stick to home-output templates (`layouts/index.<format>.<ext>`) — those have proven to work end-to-end.
 
@@ -57,6 +59,7 @@ The user's test blog: **roadsignmath.xyz**. After pushing a new version:
    - `curl -s https://www.roadsignmath.xyz/llms.txt | head -30`
    - `curl -sI https://www.roadsignmath.xyz/llms.txt` (must be `text/plain; charset=utf-8`)
    - `curl -sI https://www.roadsignmath.xyz/feed.json https://www.roadsignmath.xyz/feed.xml` (both must still be 200 — confirms we didn't clobber Micro.blog defaults)
+   - `/rsd.xml`, `/archive/`, `/archive/index.json`, `/photos/`, `/photos/index.json`, `/podcast.xml` and `/podcast.json` must answer as they did before the install (constraint 3)
    - `curl -s https://www.roadsignmath.xyz/2023/10/21/genesis.html | head -3` (must look like real HTML, not raw markdown — the regression check for the v1.0.0/1.0.1 catastrophe)
 
 ## Release flow
